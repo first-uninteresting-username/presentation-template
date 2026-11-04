@@ -1,5 +1,19 @@
 ---
-interface Props {}
+interface Props {
+  color: string;
+  href?: string;
+  hidden?: boolean;
+}
+const { color, href, hidden = false } = Astro.props;
+
+const Tag = href ? "a" : "button";
 ---
 
-<button>Text</button>
+<Tag
+  href={href}
+  class="border-2 rounded-md p-2 text-2xl text-bold bg-(--bg) inline-flex items-center gap-2"
+  style={`--bg: ${color}`}
+  hidden={hidden}
+>
+  <slot />
+</Tag>

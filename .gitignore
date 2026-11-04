@@ -160,3 +160,4 @@ devenv.local.yaml
 .pre-commit-config.yaml
 
 AGENTS.local.md
+.playwright-mcp
