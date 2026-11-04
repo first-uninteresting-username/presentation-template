@@ -9,7 +9,6 @@
   };
 
   env.ASTRO_TELEMETRY_DISABLED = "1";
-  processes.astro.exec = "pnpm dev";
 
   git-hooks.hooks = {
     alejandra.enable = true;

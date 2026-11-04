@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+  count: number;
+  bgColor: string;
+}
+const { title, count, bgColor } = Astro.props;
+
+import { Icon } from "astro-icon/components";
+
+import ButtonBase from "./ButtonBase.astro";
+---
+
+<body class="m-0 w-full h-full bg-(--bg)" style={`--bg: ${bgColor}`}>
+  <slot />
+  <div class="bg-(--bg)" style={`--bg: ${bgColor}`}>
+    <h1>
+      {count}. {title}
+    </h1>
+  </div>
+</body>
+<footer
+  class="bg-(--bg) fixed left-0 bottom-0 w-full text-center"
+  style={`--bg: ${bgColor}`}
+>
+  <ButtonBase />
+</footer>

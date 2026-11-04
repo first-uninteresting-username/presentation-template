@@ -1,0 +1,9 @@
+- generic [active] [ref=f6e1]:
+    - heading "1. HMR Works" [level=1] [ref=f6e3]
+    - contentinfo [ref=f6e4]:
+        - button
+    - generic [ref=f6e7]:
+        - button [ref=f6e8]
+        - button [ref=f6e14]
+        - button [ref=f6e18]
+        - button [ref=f6e23]
