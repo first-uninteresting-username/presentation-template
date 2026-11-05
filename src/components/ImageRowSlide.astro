@@ -1,0 +1,76 @@
+---
+interface Props {
+  title: string;
+  count: number;
+  surfaceColor: string;
+  onSurfaceColor: string;
+  primaryColor: string;
+  onPrimaryColor: string;
+  image: ImageMetadata;
+  alt: string;
+  caption?: string;
+  bottomImage?: ImageMetadata;
+  bottomAlt?: string;
+  bottomCaption?: string;
+}
+const {
+  title,
+  count,
+  surfaceColor,
+  onSurfaceColor,
+  primaryColor,
+  onPrimaryColor,
+  image,
+  alt,
+  caption,
+  bottomImage,
+  bottomAlt,
+  bottomCaption,
+} = Astro.props;
+
+import SlideBase from "./templates/SlideBase.astro";
+
+import { Image } from "astro:assets";
+---
+
+<SlideBase
+  {title}
+  {count}
+  {surfaceColor}
+  {onSurfaceColor}
+  {primaryColor}
+  {onPrimaryColor}
+>
+  <div class="flex-1 flex w-full grow min-h-0 flex-row justify-center h-full">
+    <div class="p-16 flex-1 self-center text-2xl">
+      <slot />
+    </div>
+    <figure class="flex h-full grow min-h-0 flex-col items-center gap-4 flex-1">
+      <div class="flex h-full grow min-h-0 flex-col justify-center">
+        <figure class="flex min-h-0 flex-1 flex-col items-center gap-4 p-6">
+          <Image src={image} alt={alt} class="object-contain min-h-0" />
+          {caption && bottomCaption && (
+            <figcaption class="text-center text-2xl">{caption}</figcaption>
+          )}
+        </figure>
+        {bottomImage && bottomAlt && (
+          <figure class="flex min-h-0 flex-1 flex-col items-center gap-4 p-6">
+            <Image
+              src={bottomImage}
+              alt={bottomAlt}
+              class="object-contain min-h-0"
+            />
+            {caption && bottomCaption && (
+              <figcaption class="text-center text-2xl">
+                {bottomCaption}
+              </figcaption>
+            )}
+          </figure>
+        )}
+      </div>
+      {caption && !bottomCaption && (
+        <figcaption class="text-center text-2xl">{caption}</figcaption>
+      )}
+    </figure>
+  </div>
+</SlideBase>

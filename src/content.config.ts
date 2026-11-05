@@ -23,7 +23,22 @@ const slides = defineCollection({
       rightAlt: z.string().optional(),
       rightCaption: z.string().optional(), // If only caption is passed, it is the only caption and is on the center
     });
-    return z.discriminatedUnion("type", [emptySlide, imageSlide]);
+
+    const imageRowSlide = baseSlide.extend({
+      type: z.literal("image-row"),
+      image: image(),
+      alt: z.string(),
+      caption: z.string().optional(),
+      bottomImage: image().optional(),
+      bottomAlt: z.string().optional(),
+      bottomCaption: z.string().optional(),
+    });
+
+    return z.discriminatedUnion("type", [
+      emptySlide,
+      imageSlide,
+      imageRowSlide,
+    ]);
   },
 });
 

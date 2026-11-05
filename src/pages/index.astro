@@ -1,5 +1,5 @@
 ---
-import ImageSlide from "../components/ImageSlide.astro";
+import ImageRowSlide from "../components/ImageRowSlide.astro";
 import Layout from "../layouts/Layout.astro";
 import saturnVLaunch from "../assets/saturn-v-launch.jpg";
 import cat from "../assets/cat.jpg";
@@ -9,7 +9,7 @@ import cat from "../assets/cat.jpg";
 ---
 
 <Layout>
-  <ImageSlide
+  <ImageRowSlide
     title="Dev"
     count={1}
     surfaceColor="#1e293b"
@@ -19,8 +19,8 @@ import cat from "../assets/cat.jpg";
     image={saturnVLaunch}
     alt="A Saturn V rocket lifting off from the launch pad, trailing fire and smoke"
     caption="Apollo 11 launch, July 16, 1969"
-    rightImage={cat}
-    rightAlt="Cute cat"
-    rightCaption="This is a cat"
+    bottomImage={cat}
+    bottomAlt="Cute cat"
+    bottomCaption="This is a cat"
   />
 </Layout>
