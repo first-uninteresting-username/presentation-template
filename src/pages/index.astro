@@ -2,6 +2,7 @@
 import ImageSlide from "../components/ImageSlide.astro";
 import Layout from "../layouts/Layout.astro";
 import saturnVLaunch from "../assets/saturn-v-launch.jpg";
+import cat from "../assets/cat.jpg";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -18,5 +19,8 @@ import saturnVLaunch from "../assets/saturn-v-launch.jpg";
     image={saturnVLaunch}
     alt="A Saturn V rocket lifting off from the launch pad, trailing fire and smoke"
     caption="Apollo 11 launch, July 16, 1969"
+    rightImage={cat}
+    rightAlt="Cute cat"
+    rightCaption="This is a cat"
   />
 </Layout>

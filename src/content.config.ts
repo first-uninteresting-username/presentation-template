@@ -19,6 +19,9 @@ const slides = defineCollection({
       image: image(),
       alt: z.string(),
       caption: z.string().optional(),
+      rightImage: image().optional(),
+      rightAlt: z.string().optional(),
+      rightCaption: z.string().optional(), // If only caption is passed, it is the only caption and is on the center
     });
     return z.discriminatedUnion("type", [emptySlide, imageSlide]);
   },

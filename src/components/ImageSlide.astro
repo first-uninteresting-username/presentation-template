@@ -9,6 +9,9 @@ interface Props {
   image: ImageMetadata;
   alt: string;
   caption?: string;
+  rightImage?: ImageMetadata;
+  rightAlt?: string;
+  rightCaption?: string;
 }
 const {
   title,
@@ -20,6 +23,9 @@ const {
   image,
   alt,
   caption,
+  rightImage,
+  rightAlt,
+  rightCaption,
 } = Astro.props;
 
 import SlideBase from "./templates/SlideBase.astro";
@@ -35,8 +41,29 @@ import { Image } from "astro:assets";
   {primaryColor}
   {onPrimaryColor}
 >
-  <figure class="flex flex-col items-center gap-4 p-6 w-full grow min-h-0">
-    <Image src={image} alt={alt} class="object-contain min-h-0" />
-    {caption && <figcaption class="text-center text-2xl">{caption}</figcaption>}
+  <figure class="flex w-full grow min-h-0 flex-col items-center gap-4">
+    <div class="flex w-full grow min-h-0 flex-row justify-center">
+      <figure class="flex flex-col items-center gap-4 p-6">
+        <Image src={image} alt={alt} class="object-contain min-h-0" />
+        {caption && rightCaption && (
+          <figcaption class="text-center text-2xl">{caption}</figcaption>
+        )}
+      </figure>
+      {rightImage && rightAlt && (
+        <figure class="flex flex-col items-center gap-4 p-6">
+          <Image
+            src={rightImage}
+            alt={rightAlt}
+            class="object-contain min-h-0"
+          />
+          {caption && rightCaption && (
+            <figcaption class="text-center text-2xl">{rightCaption}</figcaption>
+          )}
+        </figure>
+      )}
+    </div>
+    {caption && !rightCaption && (
+      <figcaption class="text-center text-2xl">{caption}</figcaption>
+    )}
   </figure>
 </SlideBase>
