@@ -30,41 +30,41 @@ const nextHidden = count === total;
 ---
 
 <body
-  class="m-0 w-full h-full bg-(--bg) text-(--fg)"
+  class="m-0 w-full flex flex-col h-screen bg-(--bg) text-(--fg)"
   style={`--bg: ${surfaceColor}; --fg: ${onSurfaceColor}`}
 >
-  <slot />
   <div
     class="bg-(--bg) text-(--fg)"
     style={`--bg: ${surfaceColor}; --fg: ${onSurfaceColor}`}
   >
-    <h1 class="p-6 text-center text-2xl font-bold">
+    <h1 class="p-6 text-center text-3xl font-bold">
       {count}. {title}
     </h1>
   </div>
+  <slot />
+  <footer
+    class="bg-(--bg) text-(--fg) w-full flex justify-center gap-4 p-4"
+    style={`--bg: ${surfaceColor}; --fg: ${onSurfaceColor}`}
+  >
+    <ButtonBase
+      color={primaryColor}
+      textColor={onPrimaryColor}
+      href={`/slide/${count - 1}`}
+      hidden={prevHidden}
+      shortcut="Backspace"
+    >
+      <Icon name="lucide:arrow-left" />
+      Slide {count - 1}
+    </ButtonBase>
+    <ButtonBase
+      color={primaryColor}
+      textColor={onPrimaryColor}
+      href={`/slide/${count + 1}`}
+      hidden={nextHidden}
+      shortcut={" " /*This is correct*/}
+    >
+      Slide {count + 1}
+      <Icon name="lucide:arrow-right" />
+    </ButtonBase>
+  </footer>
 </body>
-<footer
-  class="bg-(--bg) text-(--fg) fixed left-0 bottom-0 w-full flex justify-center gap-4 p-4"
-  style={`--bg: ${surfaceColor}; --fg: ${onSurfaceColor}`}
->
-  <ButtonBase
-    color={primaryColor}
-    textColor={onPrimaryColor}
-    href={`/slide/${count - 1}`}
-    hidden={prevHidden}
-    shortcut="Backspace"
-  >
-    <Icon name="lucide:arrow-left" />
-    Slide {count - 1}
-  </ButtonBase>
-  <ButtonBase
-    color={primaryColor}
-    textColor={onPrimaryColor}
-    href={`/slide/${count + 1}`}
-    hidden={nextHidden}
-    shortcut={" " /*This is correct*/}
-  >
-    Slide {count + 1}
-    <Icon name="lucide:arrow-right" />
-  </ButtonBase>
-</footer>

@@ -6,6 +6,9 @@ interface Props {
   onSurfaceColor: string;
   primaryColor: string;
   onPrimaryColor: string;
+  image: ImageMetadata;
+  alt: string;
+  caption?: string;
 }
 const {
   title,
@@ -14,7 +17,26 @@ const {
   onSurfaceColor,
   primaryColor,
   onPrimaryColor,
+  image,
+  alt,
+  caption,
 } = Astro.props;
 
 import SlideBase from "./templates/SlideBase.astro";
+
+import { Image } from "astro:assets";
 ---
+
+<SlideBase
+  {title}
+  {count}
+  {surfaceColor}
+  {onSurfaceColor}
+  {primaryColor}
+  {onPrimaryColor}
+>
+  <figure class="flex flex-col items-center gap-4 p-6 w-full grow min-h-0">
+    <Image src={image} alt={alt} class="object-contain min-h-0" />
+    {caption && <figcaption class="text-center text-2xl">{caption}</figcaption>}
+  </figure>
+</SlideBase>

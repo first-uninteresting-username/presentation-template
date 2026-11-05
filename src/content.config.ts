@@ -4,11 +4,24 @@ import { z } from "astro/zod";
 
 const slides = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/slides" }),
-  schema: z.object({
-    title: z.string(),
-    count: z.number(),
-    type: z.enum(["default", "image"]),
-  }),
+  schema: ({ image }) => {
+    const baseSlide = z.object({
+      title: z.string(),
+      count: z.number(),
+    });
+
+    const emptySlide = baseSlide.extend({
+      type: z.literal("empty"),
+    });
+
+    const imageSlide = baseSlide.extend({
+      type: z.literal("image"),
+      image: image(),
+      alt: z.string(),
+      caption: z.string().optional(),
+    });
+    return z.discriminatedUnion("type", [emptySlide, imageSlide]);
+  },
 });
 
 export const collections = { slides };
