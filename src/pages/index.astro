@@ -1,5 +1,5 @@
 ---
-import DefaultSlide from "../components/DefaultSlide.astro";
+import SlideBase from "../components/SlideBase.astro";
 import Layout from "../layouts/Layout.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -7,5 +7,12 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <DefaultSlide title="Dev" count={1} bgColor="#1e293b" buttonColor="#4f90aa" />
+  <SlideBase
+    title="Dev"
+    count={1}
+    surfaceColor="#1e293b"
+    onSurfaceColor="#f1f5f9"
+    primaryColor="#4f90aa"
+    onPrimaryColor="#0f172a"
+  />
 </Layout>

@@ -1,19 +1,34 @@
 ---
 interface Props {
   color: string;
+  textColor: string;
   href?: string;
   hidden?: boolean;
+  shortcut?: string;
 }
-const { color, href, hidden = false } = Astro.props;
+const { color, textColor, href, hidden = false, shortcut } = Astro.props;
 
 const Tag = href ? "a" : "button";
 ---
 
 <Tag
   href={href}
-  class="border-2 rounded-md p-2 text-2xl text-bold bg-(--bg) inline-flex items-center gap-2"
-  style={`--bg: ${color}`}
+  class="border-2 rounded-md p-2 text-2xl text-bold bg-(--bg) text-(--fg) inline-flex items-center gap-2"
+  style={`--bg: ${color}; --fg: ${textColor}`}
   hidden={hidden}
+  data-shortcut={shortcut}
 >
   <slot />
 </Tag>
+
+<script>
+  document.addEventListener("keydown", (e) => {
+    const el = document.querySelector<HTMLElement>(
+      `[data-shortcut="${CSS.escape(e.key)}"]:not([hidden])`,
+    );
+    if (el) {
+      e.preventDefault();
+      el.click();
+    }
+  });
+</script>
