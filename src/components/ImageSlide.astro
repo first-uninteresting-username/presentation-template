@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  count: number;
+  surfaceColor: string;
+  onSurfaceColor: string;
+  primaryColor: string;
+  onPrimaryColor: string;
+}
+const {
+  title,
+  count,
+  surfaceColor,
+  onSurfaceColor,
+  primaryColor,
+  onPrimaryColor,
+} = Astro.props;
+
+import SlideBase from "./templates/SlideBase.astro";
+---

@@ -7,7 +7,7 @@ const slides = defineCollection({
   schema: z.object({
     title: z.string(),
     count: z.number(),
-    type: z.enum(["default"]),
+    type: z.enum(["default", "image"]),
   }),
 });
 
