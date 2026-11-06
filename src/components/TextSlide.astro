@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  count: number;
+  surfaceColor: string;
+  onSurfaceColor: string;
+  primaryColor: string;
+  onPrimaryColor: string;
+}
+
+const {
+  title,
+  count,
+  surfaceColor,
+  onSurfaceColor,
+  primaryColor,
+  onPrimaryColor,
+} = Astro.props;
+
+import { parse } from "astro:schema";
+import SlideBase from "./templates/SlideBase.astro";
+---
+
+<SlideBase
+  title={title}
+  count={count}
+  surfaceColor={surfaceColor}
+  onSurfaceColor={onSurfaceColor}
+  primaryColor={primaryColor}
+  onPrimaryColor={onPrimaryColor}
+>
+  <div class="flex flex-col p-6 items-center w-full grow min-h-0 justify-center text-3xl @container">
+    <div class="text-[clamp(1.5rem,10cqw,8rem)]">
+      <slot />
+    </div>
+  </div>
+</SlideBase>
