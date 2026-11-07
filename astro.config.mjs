@@ -12,4 +12,7 @@ export default defineConfig({
   },
 
   integrations: [icon()],
+  redirects: {
+    "/": "/slides/1",
+  },
 });

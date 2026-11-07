@@ -1,5 +1,5 @@
 ---
 title: Introduction
-count: 1
+count: 2
 type: empty
 ---

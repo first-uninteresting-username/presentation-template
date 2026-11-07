@@ -1,0 +1,63 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import TextSlide from "../../components/TextSlide.astro";
+import ImageSlide from "../../components/ImageSlide.astro";
+import ImageRowSlide from "../../components/ImageRowSlide.astro";
+import SlideBase from "../../components/templates/SlideBase.astro";
+
+export async function getStaticPaths() {
+  const slides = await getCollection("slides");
+  return slides.map((slide) => ({
+    params: { count: String(slide.data.count) },
+    props: { slide },
+  }));
+}
+
+const { slide } = Astro.props;
+const { Content } = await render(slide);
+
+const theme = {
+  surfaceColor: "#1e293b",
+  onSurfaceColor: "#f1f5f9",
+  primaryColor: "#4f90aa",
+  onPrimaryColor: "#0f172a",
+};
+---
+
+<Layout>
+  {slide.data.type === "text" && (
+    <TextSlide title={slide.data.title} count={slide.data.count} {...theme}>
+      <Content />
+    </TextSlide>
+  )}
+  {slide.data.type === "image" && (
+    <ImageSlide
+      title={slide.data.title}
+      count={slide.data.count}
+      image={slide.data.image}
+      alt={slide.data.alt}
+      caption={slide.data.caption}
+      rightImage={slide.data.rightImage}
+      rightAlt={slide.data.rightAlt}
+      rightCaption={slide.data.rightCaption}
+      {...theme}
+    />
+  )}
+  {slide.data.type === "image-row" && (
+    <ImageRowSlide
+      title={slide.data.title}
+      count={slide.data.count}
+      image={slide.data.image}
+      alt={slide.data.alt}
+      caption={slide.data.caption}
+      bottomImage={slide.data.bottomImage}
+      bottomAlt={slide.data.bottomAlt}
+      bottomCaption={slide.data.bottomCaption}
+      {...theme}
+    />
+  )}
+  {slide.data.type === "empty" && (
+    <TextSlide title={slide.data.title} count={slide.data.count} {...theme} />
+  )}
+</Layout>

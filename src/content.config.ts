@@ -34,10 +34,15 @@ const slides = defineCollection({
       bottomCaption: z.string().optional(),
     });
 
+    const textSlide = baseSlide.extend({
+      type: z.literal("text"),
+    });
+
     return z.discriminatedUnion("type", [
       emptySlide,
       imageSlide,
       imageRowSlide,
+      textSlide,
     ]);
   },
 });
