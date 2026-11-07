@@ -38,11 +38,17 @@ const slides = defineCollection({
       type: z.literal("text"),
     });
 
+    const textCreditsSlide = baseSlide.extend({
+      type: z.literal("text-credits"),
+      credits: z.string(),
+    });
+
     return z.discriminatedUnion("type", [
       emptySlide,
       imageSlide,
       imageRowSlide,
       textSlide,
+      textCreditsSlide,
     ]);
   },
 });
