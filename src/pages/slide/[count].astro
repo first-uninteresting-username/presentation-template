@@ -4,6 +4,7 @@ import Layout from "../../layouts/Layout.astro";
 import TextSlide from "../../components/TextSlide.astro";
 import ImageSlide from "../../components/ImageSlide.astro";
 import ImageRowSlide from "../../components/ImageRowSlide.astro";
+import TextCreditsSlide from "../../components/TextCreditsSlide.astro";
 import SlideBase from "../../components/templates/SlideBase.astro";
 
 export async function getStaticPaths() {
@@ -17,12 +18,7 @@ export async function getStaticPaths() {
 const { slide } = Astro.props;
 const { Content } = await render(slide);
 
-const theme = {
-  surfaceColor: "#1e293b",
-  onSurfaceColor: "#f1f5f9",
-  primaryColor: "#4f90aa",
-  onPrimaryColor: "#0f172a",
-};
+import { theme } from "../../theme.ts";
 ---
 
 <Layout>
@@ -57,7 +53,17 @@ const theme = {
       {...theme}
     />
   )}
+  {slide.data.type === "text-credits" && (
+    <TextCreditsSlide
+      title={slide.data.title}
+      count={slide.data.count}
+      {...theme}
+      credits={slide.data.credits}
+    >
+      <Content />
+    </TextCreditsSlide>
+  )}
   {slide.data.type === "empty" && (
-    <TextSlide title={slide.data.title} count={slide.data.count} {...theme} />
+    <SlideBase title={slide.data.title} count={slide.data.count} {...theme} />
   )}
 </Layout>

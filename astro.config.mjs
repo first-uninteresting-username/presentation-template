@@ -13,6 +13,6 @@ export default defineConfig({
 
   integrations: [icon()],
   redirects: {
-    "/": "/slides/1",
+    "/": "/slide/1",
   },
 });
