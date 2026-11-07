@@ -51,7 +51,9 @@ import { theme } from "../../theme.ts";
       bottomAlt={slide.data.bottomAlt}
       bottomCaption={slide.data.bottomCaption}
       {...theme}
-    />
+    >
+      <Content />
+    </ImageRowSlide>
   )}
   {slide.data.type === "text-credits" && (
     <TextCreditsSlide

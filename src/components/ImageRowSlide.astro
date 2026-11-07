@@ -29,6 +29,7 @@ const {
 } = Astro.props;
 
 import SlideBase from "./templates/SlideBase.astro";
+import FitText from "./templates/FitText.astro";
 
 import { Image } from "astro:assets";
 ---
@@ -42,8 +43,10 @@ import { Image } from "astro:assets";
   {onPrimaryColor}
 >
   <div class="flex-1 flex w-full grow min-h-0 flex-row justify-center h-full">
-    <div class="p-16 flex-1 self-center text-2xl">
-      <slot />
+    <div class="flex-1 min-w-0 flex flex-col p-6">
+      <FitText>
+        <slot />
+      </FitText>
     </div>
     <figure class="flex h-full grow min-h-0 flex-col items-center gap-4 flex-1">
       <div class="flex h-full grow min-h-0 flex-col justify-center">
