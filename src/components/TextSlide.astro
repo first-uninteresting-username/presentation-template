@@ -18,6 +18,7 @@ const {
 } = Astro.props;
 
 import SlideBase from "./templates/SlideBase.astro";
+import FitText from "./templates/FitText.astro";
 ---
 
 <SlideBase
@@ -28,9 +29,9 @@ import SlideBase from "./templates/SlideBase.astro";
   primaryColor={primaryColor}
   onPrimaryColor={onPrimaryColor}
 >
-  <div class="flex flex-col p-6 items-center w-full grow min-h-0 justify-center text-3xl @container">
-    <div class="text-[clamp(1.5rem,10cqw,8rem)]">
+  <div class="flex flex-col p-6 w-full grow min-h-0">
+    <FitText>
       <slot />
-    </div>
+    </FitText>
   </div>
 </SlideBase>

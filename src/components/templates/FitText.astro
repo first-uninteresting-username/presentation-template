@@ -1,0 +1,51 @@
+---
+interface Props {
+  minRem?: number;
+  maxRem?: number;
+  class?: string;
+}
+const { minRem = 1.5, maxRem = 8, class: className } = Astro.props;
+---
+
+<div
+  data-fit-text
+  data-min-rem={minRem}
+  data-max-rem={maxRem}
+  class:list={[
+    "flex flex-col w-full grow min-h-0 overflow-auto text-3xl",
+    className,
+  ]}
+>
+  <div class="my-auto">
+    <slot />
+  </div>
+</div>
+
+<script>
+  function overflows(el: HTMLElement) {
+    return el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth;
+  }
+  function fit(el: HTMLElement) {
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    let lo = Number(el.dataset.minRem) * rem;
+    let hi = Number(el.dataset.maxRem) * rem;
+
+    el.style.fontSize = `${hi}px`;
+    if (!overflows(el)) return;
+
+    while (hi - lo > 0.5) {
+      const mid = (lo + hi) / 2;
+      el.style.fontSize = `${mid}px`;
+      if (overflows(el)) hi = mid;
+      else lo = mid;
+    }
+    el.style.fontSize = `${lo}px`;
+  }
+
+  const elements = document.querySelectorAll<HTMLElement>("[data-fit-text]");
+  const observer = new ResizeObserver((entries) => {
+    for (const entry of entries) fit(entry.target as HTMLElement);
+  });
+  elements.forEach((el) => observer.observe(el));
+  document.fonts.ready.then(() => elements.forEach(fit));
+</script>

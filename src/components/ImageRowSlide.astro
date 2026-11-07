@@ -50,7 +50,9 @@ import { Image } from "astro:assets";
         <figure class="flex min-h-0 flex-1 flex-col items-center gap-4 p-6">
           <Image src={image} alt={alt} class="object-contain min-h-0" />
           {caption && bottomCaption && (
-            <figcaption class="text-center text-2xl">{caption}</figcaption>
+            <figcaption class="text-center text-2xl whitespace-pre-line">
+              {caption}
+            </figcaption>
           )}
         </figure>
         {bottomImage && bottomAlt && (
@@ -61,7 +63,7 @@ import { Image } from "astro:assets";
               class="object-contain min-h-0"
             />
             {caption && bottomCaption && (
-              <figcaption class="text-center text-2xl">
+              <figcaption class="text-center text-2xl whitespace-pre-line">
                 {bottomCaption}
               </figcaption>
             )}
@@ -69,7 +71,9 @@ import { Image } from "astro:assets";
         )}
       </div>
       {caption && !bottomCaption && (
-        <figcaption class="text-center text-2xl">{caption}</figcaption>
+        <figcaption class="text-center text-2xl whitespace-pre-line">
+          {caption}
+        </figcaption>
       )}
     </figure>
   </div>
