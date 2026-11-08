@@ -1,0 +1,29 @@
+name: Deploy to github pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 26
+      - run: npm install
+      - run: npm run build
+        env:
+          ASTRO_SITE: https://${{ github.repository_owner }}.github.io
+          ASTRO_BASE: /${{ github.event.repository.name }}
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
