@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 
+import { pageTitle } from "../config";
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
@@ -11,7 +13,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" href={`${base}/favicon.ico`} />
     <meta name="generator" content={Astro.generator} />
-    <title>DEV</title>
+    <title>{pageTitle}</title>
   </head>
   <slot />
 </html>

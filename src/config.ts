@@ -4,3 +4,5 @@ export const theme = {
   primaryColor: "#4f90aa",
   onPrimaryColor: "#0f172a",
 };
+
+export const pageTitle = "DEV";
