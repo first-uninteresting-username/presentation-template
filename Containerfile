@@ -10,7 +10,7 @@ COPY . .
 ENV ASTRO_TELEMETRY_DISABLED=1
 RUN pnpm build
 
-FROM nginx:1.31-alpine@sha256:713fc2ebfd92e8217db451477182ee91944b123d2b1ee9fd5a8c6e91ca6c3a11
+FROM nginx:1.31-alpine@sha256:0563c36f94a6d3ec3584161b77859f740f7e20b4853f52c796a864ce6908e8ea
 COPY --from=build /build/dist /app
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
